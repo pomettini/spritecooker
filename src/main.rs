@@ -163,6 +163,132 @@ fn main()
     colors[127] = exoquant::Color::new(0, 28, 113, 0);
 
     /* Ninth row */
+    colors[128] = exoquant::Color::new(57, 57, 113, 0);
+    colors[129] = exoquant::Color::new(69, 57, 113, 0);
+    colors[130] = exoquant::Color::new(85, 57, 113, 0);
+    colors[131] = exoquant::Color::new(97, 57, 113, 0);
+    colors[132] = exoquant::Color::new(113, 57, 113, 0);
+    colors[133] = exoquant::Color::new(113, 57, 97, 0);
+    colors[134] = exoquant::Color::new(113, 57, 85, 0);
+    colors[135] = exoquant::Color::new(113, 57, 69, 0);
+    colors[136] = exoquant::Color::new(113, 57, 57, 0);
+    colors[137] = exoquant::Color::new(113, 69, 57, 0);
+    colors[138] = exoquant::Color::new(113, 85, 57, 0);
+    colors[139] = exoquant::Color::new(113, 97, 57, 0);
+    colors[140] = exoquant::Color::new(113, 113, 57, 0);
+    colors[141] = exoquant::Color::new(97, 113, 57, 0);
+    colors[142] = exoquant::Color::new(85, 113, 57, 0);
+    colors[143] = exoquant::Color::new(69, 113, 57, 0);
+
+    /* Tenth row */
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+
+    /* Eleventh row */
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+
+    /* Twelfth row */
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+
+    /* Thirteenth row */
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+
+    /* Fourteenth row */
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+
+    /* Fifteenth row */
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+
+    /* Sixteenth row */
     // colors[0] = exoquant::Color::new(0, 0, 0, 0);
     // colors[0] = exoquant::Color::new(0, 0, 0, 0);
     // colors[0] = exoquant::Color::new(0, 0, 0, 0);
@@ -182,15 +308,13 @@ fn main()
 
     let colormap = exoquant::ColorMap::new(&colors, &SimpleColorSpace::default());
 
+    // For each bitmaps does the job
     for entry in glob("**/*.bmp").unwrap()
     {
         match entry 
         {
             Ok(path) => 
             {
-                let mut imgbuffer: [u8; 65536] = [0; 65536];
-                let mut exocolors: Vec<exoquant::Color> = Vec::new();
-
                 let image = match stb_image::image::load(&path)
                 {
                     LoadResult::ImageU8(data) => data,
@@ -198,8 +322,15 @@ fn main()
                     LoadResult::Error(string) => panic!(string)
                 };
 
+                assert_eq!(&image.width, &256, "The image width must be exactly 256 px");
+                assert_eq!(&image.height, &256, "The image height must be exactly 256 px");
+
+                let mut imgbuffer: [u8; 65536] = [0; 65536];
+                let mut exocolors: Vec<exoquant::Color> = Vec::new();
+
                 // This will get the name of the output file
                 let mut output = path.clone();
+                // TODO: the output file name must be the same as the input, except for the bin extension
                 output.set_file_name("test.bin");
 
                 for i in 0..65536 
