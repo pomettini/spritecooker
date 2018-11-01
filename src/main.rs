@@ -16,7 +16,7 @@ use exoquant::*;
 
 fn main() 
 {
-    let mut colors: [exoquant::Color; 112] = [exoquant::Color::new(0, 0, 0, 0); 112];
+    let mut colors: [exoquant::Color; 256] = [exoquant::Color::new(0, 0, 0, 0); 256];
 
     /* First row */
     colors[0] = exoquant::Color::new(0, 0, 0, 0);
@@ -145,22 +145,22 @@ fn main()
     colors[111] = exoquant::Color::new(113, 0, 28, 0);
 
     /* Eighth row */
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
-    // colors[0] = exoquant::Color::new(0, 0, 0, 0);
+    colors[112] = exoquant::Color::new(113, 0, 0, 0);
+    colors[113] = exoquant::Color::new(113, 28, 0, 0);
+    colors[114] = exoquant::Color::new(113, 57, 0, 0);
+    colors[115] = exoquant::Color::new(113, 85, 0, 0);
+    colors[116] = exoquant::Color::new(113, 113, 0, 0);
+    colors[117] = exoquant::Color::new(85, 113, 0, 0);
+    colors[118] = exoquant::Color::new(57, 113, 0, 0);
+    colors[119] = exoquant::Color::new(28, 113, 0, 0);
+    colors[120] = exoquant::Color::new(0, 113, 0, 0);
+    colors[121] = exoquant::Color::new(0, 113, 28, 0);
+    colors[122] = exoquant::Color::new(0, 113, 57, 0);
+    colors[123] = exoquant::Color::new(0, 113, 85, 0);
+    colors[124] = exoquant::Color::new(0, 113, 113, 0);
+    colors[125] = exoquant::Color::new(0, 85, 113, 0);
+    colors[126] = exoquant::Color::new(0, 57, 113, 0);
+    colors[127] = exoquant::Color::new(0, 28, 113, 0);
 
     /* Ninth row */
     // colors[0] = exoquant::Color::new(0, 0, 0, 0);
@@ -198,19 +198,15 @@ fn main()
                     LoadResult::Error(string) => panic!(string)
                 };
 
+                // This will get the name of the output file
                 let mut output = path.clone();
                 output.set_file_name("test.bin");
-
-                // println!("{:?}", image.width);
-                // println!("{:?}", image.height);
-                // println!("{:?}", image.data.len());
 
                 for i in 0..65536 
                 {
                     let r = image.data[i*3];
                     let g = image.data[i*3+1];
                     let b = image.data[i*3+2];
-                    // imgbuffer[i] = r + g + b;
 
                     let mut c = Colorf::zero();
                     c.r = r as f64;
@@ -218,8 +214,6 @@ fn main()
                     c.b = b as f64;
 
                     exocolors.push(exoquant::Color::new(r, g, b, 0));
-                    // println!("{:?}", &colormap.find_nearest(c));
-                    // imgbuffer[i] = colormap.find_nearest(c) as u8;
                 }
 
                 let colorspace = SimpleColorSpace::default();
