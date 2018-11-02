@@ -1,9 +1,9 @@
-extern crate stb_image;
 extern crate exoquant;
 extern crate glob;
+extern crate stb_image;
 
-pub mod vgapalette;
 pub mod bmptovga;
+pub mod vgapalette;
 
 use std::fs::File;
 use std::io::prelude::*;
@@ -17,8 +17,7 @@ use std::path::PathBuf;
 
 use exoquant::*;
 
-fn main() 
-{
+fn main() {
     // Gets the current directory
     let args: Vec<String> = std::env::args().collect();
     let mut path = PathBuf::from(&args[0]);
@@ -28,29 +27,23 @@ fn main()
     path.push("*.bmp");
 
     // For each bitmaps does the job
-    for entry in glob(path.to_str().unwrap()).expect("Failed to read glob pattern")
-    {
-        match entry 
-        {
-            Ok(path) => 
-            {
+    for entry in glob(path.to_str().unwrap()).expect("Failed to read glob pattern") {
+        match entry {
+            Ok(path) => {
                 println!("Begin processing: {:?}", &path);
 
-                let image = match stb_image::image::load(&path)
-                {
+                let image = match stb_image::image::load(&path) {
                     LoadResult::ImageU8(data) => data,
                     LoadResult::ImageF32(..) => panic!("HDR images are not supported"),
-                    LoadResult::Error(string) => panic!(string)
+                    LoadResult::Error(string) => panic!(string),
                 };
 
-                if &image.width != &256
-                {
+                if &image.width != &256 {
                     println!("The image width must be exactly 256 px");
                     continue;
                 }
 
-                if &image.height != &256
-                {
+                if &image.height != &256 {
                     println!("The image height must be exactly 256 px");
                     continue;
                 }
@@ -58,7 +51,7 @@ fn main()
                 // This will get the name of the output file
                 let mut output = path.clone();
                 // TODO: the output file name must be the same as the input, except for the bin extension
-                output.set_file_name("test.bin");
+                output.set_extension("bin");
 
                 let indexed_image_data = bmptovga::bmp_to_vga(&image.data);
 
