@@ -6,7 +6,7 @@ pub mod vgapalette;
 
 use exoquant::*;
 
-pub fn bmp_to_vga(image: &Vec<u8>) -> Vec<u8> {
+pub fn bmp_to_vga(image: &[u8]) -> Vec<u8> {
     let vga_colors = vgapalette::get_vga_colors();
     let mut exocolors: Vec<Color> = Vec::new();
 
@@ -16,9 +16,9 @@ pub fn bmp_to_vga(image: &Vec<u8>) -> Vec<u8> {
         let b = image[i * 3 + 2];
 
         let mut c = Colorf::zero();
-        c.r = r as f64;
-        c.g = g as f64;
-        c.b = b as f64;
+        c.r = f64::from(r);
+        c.g = f64::from(g);
+        c.b = f64::from(b);
 
         exocolors.push(Color::new(r, g, b, 0));
     }
@@ -26,7 +26,6 @@ pub fn bmp_to_vga(image: &Vec<u8>) -> Vec<u8> {
     let colorspace = SimpleColorSpace::default();
     let vga_ditherer = ditherer::FloydSteinberg::new();
     let vga_remapper = Remapper::new(&vga_colors, &colorspace, &vga_ditherer);
-    let indexed_image_data = vga_remapper.remap(&exocolors, 256);
-
-    indexed_image_data
+    
+    vga_remapper.remap(&exocolors, 256)
 }

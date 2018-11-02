@@ -8,9 +8,7 @@ pub mod vgapalette;
 use std::fs::File;
 use std::io::prelude::*;
 
-use stb_image::image;
 use stb_image::image::LoadResult;
-use stb_image::image::LoadResult::*;
 
 use glob::glob;
 use std::path::PathBuf;
@@ -38,12 +36,12 @@ fn main() {
                     LoadResult::Error(string) => panic!(string),
                 };
 
-                if &image.width != &256 {
+                if image.width != 256 {
                     println!("The image width must be exactly 256 px");
                     continue;
                 }
 
-                if &image.height != &256 {
+                if image.height != 256 {
                     println!("The image height must be exactly 256 px");
                     continue;
                 }
@@ -53,10 +51,11 @@ fn main() {
                 // TODO: the output file name must be the same as the input, except for the bin extension
                 output.set_extension("bin");
 
+
                 let indexed_image_data = bmptovga::bmp_to_vga(&image.data);
 
                 let mut file = File::create(&output).unwrap();
-                file.write(&indexed_image_data).unwrap();
+                file.write_all(&indexed_image_data).unwrap();
 
                 println!("Done processing: {:?}", &path);
             }
