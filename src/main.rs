@@ -11,6 +11,7 @@ use stb_image::image::LoadResult;
 use stb_image::image::LoadResult::*;
 
 use glob::glob;
+use std::path::PathBuf;
 
 use exoquant::*;
 
@@ -308,13 +309,23 @@ fn main()
 
     let colormap = exoquant::ColorMap::new(&colors, &SimpleColorSpace::default());
 
+    // Gets the current directory
+    let args: Vec<String> = std::env::args().collect();
+    let mut path = PathBuf::from(&args[0]);
+    path.pop();
+
+    // Gets only bmp files
+    path.push("*.bmp");
+
     // For each bitmaps does the job
-    for entry in glob("**/*.bmp").unwrap()
+    for entry in glob(path.to_str().unwrap()).expect("Failed to read glob pattern")
     {
         match entry 
         {
             Ok(path) => 
             {
+                println!("Begin processing: {:?}", &path);
+
                 let image = match stb_image::image::load(&path)
                 {
                     LoadResult::ImageU8(data) => data,
@@ -322,8 +333,17 @@ fn main()
                     LoadResult::Error(string) => panic!(string)
                 };
 
-                assert_eq!(&image.width, &256, "The image width must be exactly 256 px");
-                assert_eq!(&image.height, &256, "The image height must be exactly 256 px");
+                if &image.width != &256
+                {
+                    println!("The image width must be exactly 256 px");
+                    continue;
+                }
+
+                if &image.height != &256
+                {
+                    println!("The image height must be exactly 256 px");
+                    continue;
+                }
 
                 let mut imgbuffer: [u8; 65536] = [0; 65536];
                 let mut exocolors: Vec<exoquant::Color> = Vec::new();
@@ -354,6 +374,8 @@ fn main()
 
                 let mut file = File::create(&output).unwrap();
                 file.write(&indexed_image_data).unwrap();
+
+                println!("Done processing: {:?}", &path);
             }
             Err(e) => println!("{:?}", e),
         }
