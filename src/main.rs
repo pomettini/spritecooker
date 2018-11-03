@@ -1,6 +1,6 @@
 extern crate exoquant;
-extern crate image;
 extern crate glob;
+extern crate image;
 extern crate stb_image;
 
 pub mod bmptovga;
@@ -15,8 +15,6 @@ use glob::glob;
 use std::path::PathBuf;
 
 use exoquant::*;
-
-use image::GenericImageView;
 
 fn main() {
     // Gets the current directory
@@ -49,24 +47,28 @@ fn main() {
                     continue;
                 }
 
-                // This will get the name of the output file
+                // Generates the bin path
                 let mut output = path.clone();
                 output.set_extension("bin");
 
-                // Preview image
+                // Generates the preview image path
                 let mut preview_image_path = path.clone();
                 preview_image_path.set_extension("png");
 
+                // This contains the image in VGA color space
                 let indexed_image_data = bmptovga::bmp_to_vga(&image.data);
 
+                // Writes the bin file
                 let mut file = File::create(&output).unwrap();
                 file.write_all(&indexed_image_data).unwrap();
 
+                // Adds a grid to the preview
                 let mut color_output = bmptovga::vga_to_bmp(&indexed_image_data);
                 bmptovga::add_grid(&mut color_output);
 
-                // Saving preview image
-                image::save_buffer(preview_image_path, &color_output, 256, 256, image::RGB(8)).unwrap();
+                // Saves the preview image
+                image::save_buffer(preview_image_path, &color_output, 256, 256, image::RGB(8))
+                    .unwrap();
 
                 println!("Done processing: {:?}", &path);
             }
