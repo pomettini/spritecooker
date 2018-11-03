@@ -29,3 +29,41 @@ pub fn bmp_to_vga(image: &[u8]) -> Vec<u8> {
     
     vga_remapper.remap(&exocolors, 256)
 }
+
+pub fn vga_to_bmp(image: &Vec<u8>) -> Vec<u8> {
+    let vga_colors = vgapalette::get_vga_colors();
+    let mut colors: Vec<u8> = Vec::new();
+
+    for pixel in image
+    {
+        let color_in_palette = vga_colors[*pixel as usize];
+        colors.push(color_in_palette.r);
+        colors.push(color_in_palette.g);
+        colors.push(color_in_palette.b);
+    }
+
+    colors
+}
+
+pub fn add_grid(image: &mut Vec<u8>)
+{
+    let mut x_counter = 0;
+    let mut y_counter = 1;
+
+    for i in (0..image.len()).step_by(3)
+    {
+        x_counter += 1;
+
+        if x_counter % 256 == 0
+        {
+            y_counter += 1;
+        }
+
+        if x_counter % 16 == 0 || y_counter % 16 == 0
+        {
+            image[i+0] = 0;
+            image[i+1] = 0;
+            image[i+2] = 0;
+        }
+    }
+}

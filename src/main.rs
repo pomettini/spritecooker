@@ -1,4 +1,5 @@
 extern crate exoquant;
+extern crate image;
 extern crate glob;
 extern crate stb_image;
 
@@ -14,6 +15,8 @@ use glob::glob;
 use std::path::PathBuf;
 
 use exoquant::*;
+
+use image::GenericImageView;
 
 fn main() {
     // Gets the current directory
@@ -48,14 +51,22 @@ fn main() {
 
                 // This will get the name of the output file
                 let mut output = path.clone();
-                // TODO: the output file name must be the same as the input, except for the bin extension
                 output.set_extension("bin");
 
+                // Preview image
+                let mut preview_image_path = path.clone();
+                preview_image_path.set_extension("png");
 
                 let indexed_image_data = bmptovga::bmp_to_vga(&image.data);
 
                 let mut file = File::create(&output).unwrap();
                 file.write_all(&indexed_image_data).unwrap();
+
+                let mut color_output = bmptovga::vga_to_bmp(&indexed_image_data);
+                bmptovga::add_grid(&mut color_output);
+
+                // Saving preview image
+                image::save_buffer(preview_image_path, &color_output, 256, 256, image::RGB(8)).unwrap();
 
                 println!("Done processing: {:?}", &path);
             }
