@@ -65,6 +65,7 @@ fn main() {
                 // Adds a grid to the preview
                 let mut color_output = bmptovga::vga_to_bmp(&indexed_image_data);
                 bmptovga::add_grid(&mut color_output);
+                add_offsets(&mut color_output);
 
                 // Saves the preview image
                 image::save_buffer(preview_image_path, &color_output, 256, 256, image::RGB(8))
@@ -74,5 +75,37 @@ fn main() {
             }
             Err(e) => println!("{:?}", e),
         }
+    }
+}
+
+// Please don't look at this code, it's a mess, I know. Sorry :(
+pub fn add_offsets(image: &mut Vec<u8>) {
+    let args: Vec<String> = std::env::args().collect();
+    let mut path = PathBuf::from(&args[0]);
+    path.pop();
+    path.push("impostor_offsets.png");
+
+    if !path.exists() {
+        println!("Cannot find offsets image");
+        return;
+    }
+
+    let offsets = match stb_image::image::load(&path) {
+        LoadResult::ImageU8(data) => data,
+        LoadResult::ImageF32(..) => panic!("HDR images are not supported"),
+        LoadResult::Error(string) => panic!(string),
+    };
+
+    let mut origin_counter = 0;
+    let mut destination_counter = 0;
+
+    for i in (0..65536) {
+        if offsets.data[origin_counter + 3] != 0 {
+            image[destination_counter + 0] = offsets.data[origin_counter + 0];
+            image[destination_counter + 1] = offsets.data[origin_counter + 1];
+            image[destination_counter + 2] = offsets.data[origin_counter + 2];
+        }
+        origin_counter += 4;
+        destination_counter += 3;
     }
 }
