@@ -56,7 +56,7 @@ fn main() {
                 preview_image_path.set_extension("png");
 
                 // This contains the image in VGA color space
-                let indexed_image_data = bmptovga::bmp_to_vga(&image.data);
+                let indexed_image_data = bmptovga::bmp_to_vga(&image.data, 256);
 
                 // Writes the bin file
                 let mut file = File::create(&output).unwrap();
