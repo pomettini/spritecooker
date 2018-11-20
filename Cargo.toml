@@ -2,6 +2,7 @@
 name = "impostor-spritecooker"
 version = "0.1.0"
 authors = ["Giorgio Pomettini <giorgio.pomettini@gmail.com>"]
+autobins = false
 
 [dependencies]
 image = "0.20.1"

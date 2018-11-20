@@ -5,6 +5,8 @@ extern crate stb_image;
 
 #[path = "bmptovga.rs"]
 pub mod bmptovga;
+#[path = "bmpto2bpp.rs"]
+pub mod bmpto2bpp;
 
 use stb_image::image::LoadResult;
 
@@ -14,16 +16,18 @@ pub struct PreviewImage {
     width: usize,
     height: usize,
     root: PathBuf,
-    image: Vec<u8>
+    pub image: Vec<u8>,
 }
 
 impl PreviewImage {
     pub fn new(root: &PathBuf, image: &[u8], width: usize, height: usize) -> PreviewImage {
         // Convert the image from VGA color palette to BMP
-        let img_bmp_format = bmptovga::vga_to_bmp(&image);
+        // TODO: Must accept every type of converter
+        // let img_bmp_format = bmptovga::vga_to_bmp(&image);
+        let img_bmp_format = bmpto2bpp::twopp_to_bmp(&image);
         PreviewImage {
-            width: 0,
-            height: 0,
+            width: width,
+            height: height,
             root: root.to_path_buf(),
             image: img_bmp_format,
         }
@@ -75,6 +79,12 @@ impl PreviewImage {
     // TODO: Must check errors
     pub fn write(&self) {
         let path = PreviewImage::generate_image_path(self, &self.root);
-        image::save_buffer(&path, &self.image, self.width as u32, self.height as u32, image::RGB(8)).unwrap();
+        image::save_buffer(
+            &path,
+            &self.image,
+            self.width as u32,
+            self.height as u32,
+            image::RGB(8),
+        ).unwrap();
     }
 }

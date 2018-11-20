@@ -6,7 +6,7 @@ pub fn get_vga_colors() -> [Color; 256] {
     let mut vga_colors: [Color; 256] = [Color::new(0, 0, 0, 0); 256];
 
     /* First row */
-    vga_colors[0] = Color::new(0, 0, 0, 1);
+    vga_colors[0] = Color::new(0, 0, 0, 255);
     vga_colors[1] = Color::new(0, 0, 170, 0);
     vga_colors[2] = Color::new(0, 170, 0, 0);
     vga_colors[3] = Color::new(0, 170, 170, 0);

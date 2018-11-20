@@ -4,8 +4,8 @@ extern crate image;
 extern crate stb_image;
 
 pub mod binfile;
-pub mod bmptovga;
 pub mod bmpto2bpp;
+pub mod bmptovga;
 pub mod previewimage;
 pub mod spritesheet;
 pub mod vgapalette;
@@ -55,8 +55,12 @@ pub fn process_image(path: &PathBuf) -> Result<(), ()> {
     let bin_file = BinFile::new(&path, &indexed_image_data);
     bin_file.write();
 
-    // Generates Preview file
-    let mut preview_image = PreviewImage::new(&path, &indexed_image_data, spritesheet.width, spritesheet.height);
+    let mut preview_image = PreviewImage::new(
+        &path,
+        &indexed_image_data,
+        spritesheet.width,
+        spritesheet.height,
+    );
     preview_image.add_grid(spritesheet.width, 16);
     preview_image.write();
 
