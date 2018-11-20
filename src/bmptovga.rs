@@ -1,5 +1,4 @@
 extern crate exoquant;
-extern crate font8x8;
 extern crate stb_image;
 
 #[path = "vgapalette.rs"]
