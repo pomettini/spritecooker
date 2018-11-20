@@ -2,6 +2,9 @@
 	"folders": [
 		{
 			"path": "."
+		},
+		{
+			"path": "/Users/Giorgio/Git/impostor"
 		}
 	],
 	"settings": {}

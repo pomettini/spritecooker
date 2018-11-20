@@ -11,15 +11,19 @@ use stb_image::image::LoadResult;
 use std::path::PathBuf;
 
 pub struct PreviewImage {
+    width: usize,
+    height: usize,
     root: PathBuf,
-    image: Vec<u8>,
+    image: Vec<u8>
 }
 
 impl PreviewImage {
-    pub fn new(root: &PathBuf, image: &[u8]) -> PreviewImage {
+    pub fn new(root: &PathBuf, image: &[u8], width: usize, height: usize) -> PreviewImage {
         // Convert the image from VGA color palette to BMP
         let img_bmp_format = bmptovga::vga_to_bmp(&image);
         PreviewImage {
+            width: 0,
+            height: 0,
             root: root.to_path_buf(),
             image: img_bmp_format,
         }
@@ -63,14 +67,14 @@ impl PreviewImage {
         }
     }
 
-    pub fn add_grid(&mut self) {
-        bmptovga::add_grid(&mut self.image);
+    pub fn add_grid(&mut self, image_width: usize, tile_size: usize) {
+        bmptovga::add_grid(&mut self.image, image_width, tile_size);
         PreviewImage::add_offsets(&mut self.image);
     }
 
     // TODO: Must check errors
     pub fn write(&self) {
         let path = PreviewImage::generate_image_path(self, &self.root);
-        image::save_buffer(&path, &self.image, 256, 256, image::RGB(8)).unwrap();
+        image::save_buffer(&path, &self.image, self.width as u32, self.height as u32, image::RGB(8)).unwrap();
     }
 }

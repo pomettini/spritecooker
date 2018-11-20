@@ -8,3 +8,10 @@ image = "0.20.1"
 exoquant = "0.2.0"
 stb_image = "0.2.2"
 glob = "0.2.11"
+
+[[bin]]
+name = "impostor_cooker"
+path = "src/impostor_cooker.rs"
+[[bin]]
+name = "gb_cooker"
+path = "src/gb_cooker.rs"

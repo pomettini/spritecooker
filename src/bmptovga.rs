@@ -46,18 +46,18 @@ pub fn vga_to_bmp(image: &[u8]) -> Vec<u8> {
     colors
 }
 
-pub fn add_grid(image: &mut Vec<u8>) {
+pub fn add_grid(image: &mut Vec<u8>, grid_width: usize, cell_size: usize) {
     let mut x_counter = 0;
     let mut y_counter = 1;
 
     for i in (0..image.len()).step_by(3) {
         x_counter += 1;
 
-        if x_counter % 256 == 0 {
+        if x_counter % &grid_width == 0 {
             y_counter += 1;
         }
 
-        if x_counter % 16 == 0 || y_counter % 16 == 0 {
+        if x_counter % &cell_size == 0 || y_counter % &cell_size == 0 {
             image[i + 0] = 0;
             image[i + 1] = 0;
             image[i + 2] = 0;
