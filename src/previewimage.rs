@@ -16,7 +16,7 @@ pub struct PreviewImage {
 }
 
 impl PreviewImage {
-    pub fn new(root: &PathBuf, image: &Vec<u8>) -> PreviewImage {
+    pub fn new(root: &PathBuf, image: &[u8]) -> PreviewImage {
         // Convert the image from VGA color palette to BMP
         let img_bmp_format = bmptovga::vga_to_bmp(&image);
         PreviewImage {

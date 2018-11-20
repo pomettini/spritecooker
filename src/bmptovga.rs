@@ -7,7 +7,7 @@ pub mod vgapalette;
 
 use exoquant::*;
 
-pub fn bmp_to_vga(image: &[u8], image_width: usize) -> Vec<u8> {
+pub fn bmp_to_vga(image: &[u8], image_width: &usize) -> Vec<u8> {
     let vga_colors = vgapalette::get_vga_colors();
     let mut exocolors: Vec<Color> = Vec::new();
 
@@ -30,7 +30,7 @@ pub fn bmp_to_vga(image: &[u8], image_width: usize) -> Vec<u8> {
     let vga_ditherer = ditherer::FloydSteinberg::new();
     let vga_remapper = Remapper::new(&vga_colors, &colorspace, &vga_ditherer);
 
-    vga_remapper.remap(&exocolors, image_width)
+    vga_remapper.remap(&exocolors, *image_width)
 }
 
 pub fn vga_to_bmp(image: &[u8]) -> Vec<u8> {

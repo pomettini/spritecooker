@@ -6,15 +6,12 @@ extern crate stb_image;
 pub mod binfile;
 pub mod bmptovga;
 pub mod previewimage;
+pub mod spritesheet;
 pub mod vgapalette;
-
-use std::fs::File;
-use std::io::prelude::*;
 
 use binfile::*;
 use previewimage::*;
-
-use stb_image::image::LoadResult;
+use spritesheet::*;
 
 use glob::glob;
 use std::path::PathBuf;
@@ -47,22 +44,11 @@ fn main() {
 pub fn process_image(path: &PathBuf) -> Result<(), ()> {
     println!("Begin processing: {:?}", &path);
 
-    let image = match stb_image::image::load(&path) {
-        LoadResult::ImageU8(data) => data,
-        LoadResult::ImageF32(..) => panic!("HDR images are not supported"),
-        LoadResult::Error(string) => panic!(string),
-    };
+    let mut spritesheet = Spritesheet::new();
+    spritesheet.load(&path);
 
-    if image.width != 256 {
-        println!("The image width must be exactly 256 px");
-    }
-
-    if image.height != 256 {
-        println!("The image height must be exactly 256 px");
-    }
-
-    // This contains the image in VGA color space
-    let indexed_image_data = bmptovga::bmp_to_vga(&image.data, 256);
+    // Convert the image to VGA color space
+    let indexed_image_data = bmptovga::bmp_to_vga(&spritesheet.imagebuf, &spritesheet.width);
 
     // Generates Bin file
     let bin_file = BinFile::new(&path, &indexed_image_data);
