@@ -76,7 +76,7 @@ fn bmp_to_vga_first_green() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 24;
 
-    let output = bmp_to_vga(&input_test, 1);
+    let output = bmp_to_vga(&input_test, &1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }
@@ -92,7 +92,7 @@ fn bmp_to_vga_first_red() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 0;
 
-    let output = bmp_to_vga(&input_test, 1);
+    let output = bmp_to_vga(&input_test, &1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }
@@ -107,7 +107,7 @@ fn bmp_to_vga_second_green() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 253;
 
-    let output = bmp_to_vga(&input_test, 1);
+    let output = bmp_to_vga(&input_test, &1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }
@@ -123,7 +123,7 @@ fn bmp_to_vga_second_red() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 0;
 
-    let output = bmp_to_vga(&input_test, 1);
+    let output = bmp_to_vga(&input_test, &1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }
@@ -138,7 +138,7 @@ fn bmp_to_vga_third_green() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 29;
 
-    let output = bmp_to_vga(&input_test, 1);
+    let output = bmp_to_vga(&input_test, &1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }
@@ -154,7 +154,7 @@ fn bmp_to_vga_third_red() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 0;
 
-    let output = bmp_to_vga(&input_test, 1);
+    let output = bmp_to_vga(&input_test, &1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }
