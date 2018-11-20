@@ -11,7 +11,7 @@ pub fn bmp_to_vga(image: &[u8], image_width: usize) -> Vec<u8> {
     let vga_colors = vgapalette::get_vga_colors();
     let mut exocolors: Vec<Color> = Vec::new();
 
-    let image_size = (image.len() / 3);
+    let image_size = image.len() / 3;
 
     for i in 0..image_size {
         let r = image[i * 3];
@@ -67,8 +67,7 @@ pub fn add_grid(image: &mut Vec<u8>) {
 }
 
 #[test]
-fn bmp_to_vga_first_green() 
-{
+fn bmp_to_vga_first_green() {
     let mut input_test: [u8; 3] = [0; 3];
     input_test[0] = 128;
     input_test[1] = 128;
@@ -84,8 +83,7 @@ fn bmp_to_vga_first_green()
 
 #[test]
 #[should_panic]
-fn bmp_to_vga_first_red() 
-{
+fn bmp_to_vga_first_red() {
     let mut input_test: [u8; 3] = [0; 3];
     input_test[0] = 128;
     input_test[1] = 128;
@@ -100,8 +98,7 @@ fn bmp_to_vga_first_red()
 }
 
 #[test]
-fn bmp_to_vga_second_green() 
-{
+fn bmp_to_vga_second_green() {
     let mut input_test: [u8; 3] = [0; 3];
     input_test[0] = 0;
     input_test[1] = 0;
@@ -117,8 +114,7 @@ fn bmp_to_vga_second_green()
 
 #[test]
 #[should_panic]
-fn bmp_to_vga_second_red() 
-{
+fn bmp_to_vga_second_red() {
     let mut input_test: [u8; 3] = [0; 3];
     input_test[0] = 0;
     input_test[1] = 0;
@@ -133,8 +129,7 @@ fn bmp_to_vga_second_red()
 }
 
 #[test]
-fn bmp_to_vga_third_green() 
-{
+fn bmp_to_vga_third_green() {
     let mut input_test: [u8; 3] = [0; 3];
     input_test[0] = 228;
     input_test[1] = 216;
@@ -150,8 +145,7 @@ fn bmp_to_vga_third_green()
 
 #[test]
 #[should_panic]
-fn bmp_to_vga_third_red() 
-{
+fn bmp_to_vga_third_red() {
     let mut input_test: [u8; 3] = [0; 3];
     input_test[0] = 228;
     input_test[1] = 216;
