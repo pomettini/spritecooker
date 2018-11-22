@@ -49,7 +49,7 @@ pub fn process_image(path: &PathBuf) -> Result<(), ()> {
     spritesheet.load(&path);
 
     // Convert the image to VGA color space
-    let indexed_image_data = bmptovga::bmp_to_vga(&spritesheet.imagebuf, &spritesheet.width);
+    let indexed_image_data = bmptovga::bmp_to_vga(&spritesheet.imagebuf, spritesheet.width);
 
     // Generates Bin file
     let bin_file = BinFile::new(&path, &indexed_image_data);

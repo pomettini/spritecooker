@@ -6,7 +6,7 @@ pub mod vgapalette;
 
 use exoquant::*;
 
-pub fn bmp_to_vga(image: &[u8], image_width: &usize) -> Vec<u8> {
+pub fn bmp_to_vga(image: &[u8], image_width: usize) -> Vec<u8> {
     let vga_colors = vgapalette::get_vga_colors();
     let mut exocolors: Vec<Color> = Vec::new();
 
@@ -29,7 +29,7 @@ pub fn bmp_to_vga(image: &[u8], image_width: &usize) -> Vec<u8> {
     let vga_ditherer = ditherer::FloydSteinberg::new();
     let vga_remapper = Remapper::new(&vga_colors, &colorspace, &vga_ditherer);
 
-    vga_remapper.remap(&exocolors, *image_width)
+    vga_remapper.remap(&exocolors, image_width)
 }
 
 pub fn vga_to_bmp(image: &[u8]) -> Vec<u8> {
@@ -53,11 +53,11 @@ pub fn add_grid(image: &mut Vec<u8>, grid_width: usize, cell_size: usize) {
     for i in (0..image.len()).step_by(3) {
         x_counter += 1;
 
-        if x_counter % &grid_width == 0 {
+        if x_counter % grid_width == 0 {
             y_counter += 1;
         }
 
-        if x_counter % &cell_size == 0 || y_counter % &cell_size == 0 {
+        if x_counter % cell_size == 0 || y_counter % cell_size == 0 {
             image[i + 0] = 0;
             image[i + 1] = 0;
             image[i + 2] = 0;
@@ -75,7 +75,7 @@ fn bmp_to_vga_first_green() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 24;
 
-    let output = bmp_to_vga(&input_test, &1);
+    let output = bmp_to_vga(&input_test, 1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }
@@ -91,7 +91,7 @@ fn bmp_to_vga_first_red() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 0;
 
-    let output = bmp_to_vga(&input_test, &1);
+    let output = bmp_to_vga(&input_test, 1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }
@@ -106,7 +106,7 @@ fn bmp_to_vga_second_green() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 46;
 
-    let output = bmp_to_vga(&input_test, &1);
+    let output = bmp_to_vga(&input_test, 1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }
@@ -122,7 +122,7 @@ fn bmp_to_vga_second_red() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 0;
 
-    let output = bmp_to_vga(&input_test, &1);
+    let output = bmp_to_vga(&input_test, 1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }
@@ -137,7 +137,7 @@ fn bmp_to_vga_third_green() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 29;
 
-    let output = bmp_to_vga(&input_test, &1);
+    let output = bmp_to_vga(&input_test, 1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }
@@ -153,7 +153,7 @@ fn bmp_to_vga_third_red() {
     let mut output_test: [u8; 1] = [0; 1];
     output_test[0] = 0;
 
-    let output = bmp_to_vga(&input_test, &1);
+    let output = bmp_to_vga(&input_test, 1);
 
     assert_eq!(&output[0..1], &output_test[0..1]);
 }

@@ -15,7 +15,7 @@ pub fn get_gb_colors() -> [Color; 4] {
     gb_colors
 }
 
-pub fn bmp_to_2bpp(image: &[u8], image_width: &usize) -> Vec<u8> {
+pub fn bmp_to_2bpp(image: &[u8], image_width: usize) -> Vec<u8> {
     let gb_colors = get_gb_colors();
     let mut exocolors: Vec<Color> = Vec::new();
 
@@ -38,7 +38,7 @@ pub fn bmp_to_2bpp(image: &[u8], image_width: &usize) -> Vec<u8> {
     let gb_ditherer = ditherer::FloydSteinberg::new();
     let gb_remapper = Remapper::new(&gb_colors, &colorspace, &gb_ditherer);
 
-    gb_remapper.remap(&exocolors, *image_width)
+    gb_remapper.remap(&exocolors, image_width)
 }
 
 pub fn twopp_to_bmp(image: &[u8]) -> Vec<u8> {
@@ -63,8 +63,8 @@ pub fn tile_to_hex(tile_pixels: &[u8]) -> Vec<u8> {
 
     for y in 0..8 {
         // Each bit in the horizontal line is a pixel on the screen
-        let mut first_bitplane_row: u8 = 0b00000000;
-        let mut second_bitplane_row: u8 = 0b00000000;
+        let mut first_bitplane_row: u8 = 0b0000_0000;
+        let mut second_bitplane_row: u8 = 0b0000_0000;
         // For each pixel in the horizontal line
         for x in 0..8 {
             // If the pixel is not white I set the respective bit
@@ -94,51 +94,46 @@ pub fn tile_to_hex(tile_pixels: &[u8]) -> Vec<u8> {
     result
 }
 
-pub fn print_tile(tile: Vec<u8>, tile_name: &str) {
-    println!("{}", tile_name);
-    println!();
-}
-
 pub fn set_bit(index: usize) -> u8 {
-    let mut result: u8 = 0b10000000;
+    let mut result: u8 = 0b1000_0000;
     result >>= index;
     result
 }
 
 #[test]
 fn set_bit_green() {
-    assert_eq!(set_bit(5), 0b00000100);
+    assert_eq!(set_bit(5), 0b0000_0100);
 }
 
 #[test]
 #[should_panic]
 fn set_bit_red() {
-    assert_eq!(set_bit(5), 0b00000010);
+    assert_eq!(set_bit(5), 0b0000_0010);
 }
 
 #[test]
 fn bitwise_or_green() {
     let first_value = set_bit(0);
-    assert_eq!(first_value, 0b10000000);
+    assert_eq!(first_value, 0b1000_0000);
 
     let second_value = set_bit(7);
-    assert_eq!(second_value, 0b00000001);
+    assert_eq!(second_value, 0b0000_0001);
 
     let result = first_value | second_value;
-    assert_eq!(result, 0b10000001);
+    assert_eq!(result, 0b1000_0001);
 }
 
 #[test]
 #[should_panic]
 fn bitwise_or_red() {
     let first_value = set_bit(0);
-    assert_eq!(first_value, 0b11000000);
+    assert_eq!(first_value, 0b1100_0000);
 
     let second_value = set_bit(7);
-    assert_eq!(second_value, 0b00000011);
+    assert_eq!(second_value, 0b0000_0011);
 
     let result = first_value | second_value;
-    assert_eq!(result, 0b10000001);
+    assert_eq!(result, 0b1000_0001);
 }
 
 #[test]
@@ -147,8 +142,8 @@ fn tile_to_hex_first_green() {
     input_test[0] = 3;
 
     let mut output_test: [u8; 16] = [0; 16];
-    output_test[0] = 0b10000000;
-    output_test[8] = 0b10000000;
+    output_test[0] = 0b1000_0000;
+    output_test[8] = 0b1000_0000;
 
     let output = tile_to_hex(&input_test);
 
@@ -188,15 +183,15 @@ fn tile_to_hex_second_green() {
     let mut output_test: [u8; 16] = [0; 16];
 
     // First bit plane
-    output_test[0] = 0b11111111;
-    output_test[1] = 0b10100101;
-    output_test[6] = 0b10100101;
-    output_test[7] = 0b11111111;
+    output_test[0] = 0b1111_1111;
+    output_test[1] = 0b1010_0101;
+    output_test[6] = 0b1010_0101;
+    output_test[7] = 0b1111_1111;
     // Second bit plane
-    output_test[8] = 0b11111111;
-    output_test[9] = 0b11000011;
-    output_test[14] = 0b11000011;
-    output_test[15] = 0b11111111;
+    output_test[8] = 0b1111_1111;
+    output_test[9] = 0b1100_0011;
+    output_test[14] = 0b1100_0011;
+    output_test[15] = 0b1111_1111;
 
     let output = tile_to_hex(&input_test);
 
@@ -227,15 +222,15 @@ fn tile_to_hex_second_red() {
     let mut output_test: [u8; 16] = [0; 16];
 
     // First bit plane
-    output_test[0] = 0b11111111;
-    output_test[1] = 0b11000011;
-    output_test[6] = 0b11000011;
-    output_test[7] = 0b11111111;
+    output_test[0] = 0b1111_1111;
+    output_test[1] = 0b1100_0011;
+    output_test[6] = 0b1100_0011;
+    output_test[7] = 0b1111_1111;
     // Second bit plane
-    output_test[8] = 0b11111111;
-    output_test[9] = 0b10100101;
-    output_test[14] = 0b10100101;
-    output_test[15] = 0b11111111;
+    output_test[8] = 0b1111_1111;
+    output_test[9] = 0b1010_0101;
+    output_test[14] = 0b1010_0101;
+    output_test[15] = 0b1111_1111;
 
     let output = tile_to_hex(&input_test);
 

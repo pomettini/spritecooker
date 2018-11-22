@@ -6,6 +6,7 @@ extern crate stb_image;
 use stb_image::image::LoadResult;
 use std::path::PathBuf;
 
+#[derive(Default)]
 pub struct Spritesheet {
     pub width: usize,
     pub height: usize,

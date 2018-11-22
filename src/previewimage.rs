@@ -26,8 +26,8 @@ impl PreviewImage {
         // let img_bmp_format = bmptovga::vga_to_bmp(&image);
         let img_bmp_format = bmpto2bpp::twopp_to_bmp(&image);
         PreviewImage {
-            width: width,
-            height: height,
+            width,
+            height,
             root: root.to_path_buf(),
             image: img_bmp_format,
         }
@@ -60,7 +60,7 @@ impl PreviewImage {
         let mut origin_counter = 0;
         let mut destination_counter = 0;
 
-        for i in 0..65536 {
+        for _i in 0..65536 {
             if offsets.data[origin_counter + 3] != 0 {
                 image[destination_counter + 0] = offsets.data[origin_counter + 0];
                 image[destination_counter + 1] = offsets.data[origin_counter + 1];
