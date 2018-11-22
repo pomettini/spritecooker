@@ -56,6 +56,8 @@ pub fn process_image(path: &PathBuf) -> Result<(), ()> {
     let bin_file = BinFile::new(&path, &indexed_image_data);
     bin_file.write();
 
+    println!("{:?}", &indexed_image_data);
+
     // Generates Preview file
     let mut preview_image = PreviewImage::new(
         &path,

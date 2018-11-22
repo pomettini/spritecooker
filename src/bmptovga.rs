@@ -104,7 +104,7 @@ fn bmp_to_vga_second_green() {
     input_test[2] = 0;
 
     let mut output_test: [u8; 1] = [0; 1];
-    output_test[0] = 253;
+    output_test[0] = 46;
 
     let output = bmp_to_vga(&input_test, &1);
 

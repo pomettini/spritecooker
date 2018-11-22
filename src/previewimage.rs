@@ -3,10 +3,10 @@ extern crate glob;
 extern crate image;
 extern crate stb_image;
 
-#[path = "bmptovga.rs"]
-pub mod bmptovga;
 #[path = "bmpto2bpp.rs"]
 pub mod bmpto2bpp;
+#[path = "bmptovga.rs"]
+pub mod bmptovga;
 
 use stb_image::image::LoadResult;
 
