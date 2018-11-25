@@ -16,7 +16,7 @@ pub struct PreviewImage {
     width: usize,
     height: usize,
     root: PathBuf,
-    pub image: Vec<u8>,
+    image: Vec<u8>,
 }
 
 impl PreviewImage {
@@ -24,13 +24,24 @@ impl PreviewImage {
         // Convert the image from VGA color palette to BMP
         // TODO: Must accept every type of converter
         // let img_bmp_format = bmptovga::vga_to_bmp(&image);
-        let img_bmp_format = bmpto2bpp::twopp_to_bmp(&image);
         PreviewImage {
             width,
             height,
             root: root.to_path_buf(),
-            image: img_bmp_format,
+            image: image.to_vec(),
         }
+    }
+
+    pub fn convert_from_2bpp(&mut self)
+    {
+        let img_bmp_format = bmpto2bpp::twopp_to_bmp(&self.image);
+        self.image = img_bmp_format;
+    }
+
+    pub fn convert_from_vga(&mut self)
+    {
+        let img_bmp_format = bmptovga::vga_to_bmp(&self.image);
+        self.image = img_bmp_format;
     }
 
     fn generate_image_path(&self, root: &PathBuf) -> PathBuf {
@@ -73,7 +84,7 @@ impl PreviewImage {
 
     pub fn add_grid(&mut self, image_width: usize, tile_size: usize) {
         bmptovga::add_grid(&mut self.image, image_width, tile_size);
-        PreviewImage::add_offsets(&mut self.image);
+        // PreviewImage::add_offsets(&mut self.image);
     }
 
     // TODO: Must check errors

@@ -61,6 +61,7 @@ pub fn process_image(path: &PathBuf) -> Result<(), ()> {
         spritesheet.width,
         spritesheet.height,
     );
+    preview_image.convert_from_vga();
     preview_image.add_grid(spritesheet.width, 16);
     preview_image.write();
 

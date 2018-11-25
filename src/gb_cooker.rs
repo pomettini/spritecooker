@@ -65,8 +65,7 @@ pub fn process_image(path: &PathBuf) -> Result<(), ()> {
         spritesheet.width,
         spritesheet.height,
     );
-    // preview_image.add_grid(spritesheet.width, 16);
-    
+    preview_image.convert_from_2bpp();
     preview_image.write();
 
     println!("Done processing: {:?}", &path);
