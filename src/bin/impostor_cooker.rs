@@ -1,5 +1,5 @@
-extern crate spritecooker;
 extern crate glob;
+extern crate spritecooker;
 
 use spritecooker::binfile::*;
 use spritecooker::previewimage::*;

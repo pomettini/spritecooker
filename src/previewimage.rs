@@ -31,14 +31,12 @@ impl PreviewImage {
         }
     }
 
-    pub fn convert_from_2bpp(&mut self)
-    {
+    pub fn convert_from_2bpp(&mut self) {
         let img_bmp_format = bmpto2bpp::twopp_to_bmp(&self.image);
         self.image = img_bmp_format;
     }
 
-    pub fn convert_from_vga(&mut self)
-    {
+    pub fn convert_from_vga(&mut self) {
         let img_bmp_format = bmptovga::vga_to_bmp(&self.image);
         self.image = img_bmp_format;
     }
@@ -52,7 +50,7 @@ impl PreviewImage {
     // Please don't look at this code, it's a mess, I know. Sorry :(
     fn add_offsets(image: &mut Vec<u8>) {
         // The image must be 256 * 256
-        assert_eq!(image.len(), 256*256);
+        assert_eq!(image.len(), 256 * 256);
 
         let args: Vec<String> = std::env::args().collect();
         let mut path = PathBuf::from(&args[0]);
@@ -73,7 +71,7 @@ impl PreviewImage {
         let mut origin_counter = 0;
         let mut destination_counter = 0;
 
-        for _i in 0..256*256 {
+        for _i in 0..256 * 256 {
             if offsets.data[origin_counter + 3] != 0 {
                 image[destination_counter + 0] = offsets.data[origin_counter + 0];
                 image[destination_counter + 1] = offsets.data[origin_counter + 1];

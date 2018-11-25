@@ -9,3 +9,5 @@ pub mod bmptovga;
 pub mod previewimage;
 pub mod spritesheet;
 pub mod vgapalette;
+pub mod decoders;
+pub mod sprite;
