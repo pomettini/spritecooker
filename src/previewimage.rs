@@ -23,7 +23,6 @@ impl PreviewImage {
     pub fn new(root: &PathBuf, image: &[u8], width: usize, height: usize) -> PreviewImage {
         // Convert the image from VGA color palette to BMP
         // TODO: Must accept every type of converter
-        // let img_bmp_format = bmptovga::vga_to_bmp(&image);
         PreviewImage {
             width,
             height,
@@ -52,6 +51,9 @@ impl PreviewImage {
 
     // Please don't look at this code, it's a mess, I know. Sorry :(
     fn add_offsets(image: &mut Vec<u8>) {
+        // The image must be 256 * 256
+        assert_eq!(image.len(), 256*256);
+
         let args: Vec<String> = std::env::args().collect();
         let mut path = PathBuf::from(&args[0]);
         path.pop();
@@ -71,7 +73,7 @@ impl PreviewImage {
         let mut origin_counter = 0;
         let mut destination_counter = 0;
 
-        for _i in 0..65536 {
+        for _i in 0..256*256 {
             if offsets.data[origin_counter + 3] != 0 {
                 image[destination_counter + 0] = offsets.data[origin_counter + 0];
                 image[destination_counter + 1] = offsets.data[origin_counter + 1];

@@ -1,6 +1,6 @@
 extern crate exoquant;
 
-use Color;
+use exoquant::Color;
 
 pub fn get_vga_colors() -> [Color; 256] {
     let mut vga_colors: [Color; 256] = [Color::new(0, 0, 0, 0); 256];

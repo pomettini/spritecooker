@@ -1,23 +1,13 @@
-extern crate exoquant;
+extern crate spritecooker;
 extern crate glob;
-extern crate image;
-extern crate stb_image;
 
-pub mod binfile;
-pub mod bmpto2bpp;
-pub mod bmptovga;
-pub mod previewimage;
-pub mod spritesheet;
-pub mod vgapalette;
-
-use binfile::*;
-use previewimage::*;
-use spritesheet::*;
+use spritecooker::binfile::*;
+use spritecooker::previewimage::*;
+use spritecooker::spritesheet::*;
 
 use glob::glob;
-use std::path::PathBuf;
 
-use exoquant::*;
+use std::path::PathBuf;
 
 fn main() {
     // Gets the current directory
