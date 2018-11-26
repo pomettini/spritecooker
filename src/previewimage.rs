@@ -12,11 +12,13 @@ use stb_image::image::LoadResult;
 
 use std::path::PathBuf;
 
+type Bitmap = Vec<u8>;
+
 pub struct PreviewImage {
     width: usize,
     height: usize,
     root: PathBuf,
-    image: Vec<u8>,
+    image: Bitmap,
 }
 
 impl PreviewImage {
@@ -48,7 +50,7 @@ impl PreviewImage {
     }
 
     // Please don't look at this code, it's a mess, I know. Sorry :(
-    fn add_offsets(image: &mut Vec<u8>) {
+    fn add_offsets(image: &mut Bitmap) {
         // The image must be 256 * 256
         assert_eq!(image.len(), 256 * 256);
 

@@ -3,6 +3,7 @@ extern crate glob;
 extern crate image;
 extern crate stb_image;
 
+use bitmap::Bitmap;
 use stb_image::image::LoadResult;
 use std::path::PathBuf;
 
@@ -10,7 +11,7 @@ use std::path::PathBuf;
 pub struct Spritesheet {
     pub width: usize,
     pub height: usize,
-    pub imagebuf: Vec<u8>,
+    pub imagebuf: Bitmap,
 }
 
 impl Spritesheet {

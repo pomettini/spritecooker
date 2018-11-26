@@ -3,6 +3,7 @@ extern crate glob;
 extern crate image;
 extern crate stb_image;
 
+use bitmap::Bitmap;
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::PathBuf;
@@ -10,7 +11,7 @@ use std::path::PathBuf;
 #[derive(Default)]
 pub struct BinFile {
     root: PathBuf,
-    image: Vec<u8>,
+    image: Bitmap,
 }
 
 impl BinFile {

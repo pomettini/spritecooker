@@ -6,7 +6,9 @@ pub mod vgapalette;
 
 use exoquant::*;
 
-pub fn bmp_to_vga(image: &[u8], image_width: usize) -> Vec<u8> {
+type Bitmap = Vec<u8>;
+
+pub fn bmp_to_vga(image: &[u8], image_width: usize) -> Bitmap {
     let vga_colors = vgapalette::get_vga_colors();
     let mut exocolors: Vec<Color> = Vec::new();
 
@@ -32,9 +34,9 @@ pub fn bmp_to_vga(image: &[u8], image_width: usize) -> Vec<u8> {
     vga_remapper.remap(&exocolors, image_width)
 }
 
-pub fn vga_to_bmp(image: &[u8]) -> Vec<u8> {
+pub fn vga_to_bmp(image: &[u8]) -> Bitmap {
     let vga_colors = vgapalette::get_vga_colors();
-    let mut colors: Vec<u8> = Vec::new();
+    let mut colors: Bitmap = Vec::new();
 
     for pixel in image {
         let color_in_palette = vga_colors[*pixel as usize];
@@ -46,7 +48,7 @@ pub fn vga_to_bmp(image: &[u8]) -> Vec<u8> {
     colors
 }
 
-pub fn add_grid(image: &mut Vec<u8>, grid_width: usize, cell_size: usize) {
+pub fn add_grid(image: &mut Bitmap, grid_width: usize, cell_size: usize) {
     let mut x_counter = 0;
     let mut y_counter = 1;
 
