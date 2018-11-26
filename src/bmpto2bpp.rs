@@ -2,8 +2,7 @@ extern crate exoquant;
 extern crate stb_image;
 
 use exoquant::*;
-
-type Bitmap = Vec<u8>;
+use bitmap::Bitmap;
 
 pub fn get_gb_colors() -> [Color; 4] {
     let mut gb_colors: [Color; 4] = [Color::new(0, 0, 0, 0); 4];

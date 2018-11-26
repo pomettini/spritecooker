@@ -1,6 +1,5 @@
 use sprites::pico8_sprite::Pico8Sprite;
-
-type Bitmap = Vec<u8>;
+use bitmap::Bitmap;
 
 struct Pico8Cart {
     data: Bitmap,

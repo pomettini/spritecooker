@@ -5,8 +5,7 @@ extern crate stb_image;
 pub mod vgapalette;
 
 use exoquant::*;
-
-type Bitmap = Vec<u8>;
+use bitmap::Bitmap;
 
 pub fn bmp_to_vga(image: &[u8], image_width: usize) -> Bitmap {
     let vga_colors = vgapalette::get_vga_colors();

@@ -1,8 +1,7 @@
 pub mod gameboy_sprite;
 pub mod impostor_sprite;
 pub mod pico8_sprite;
-
-type Bitmap = Vec<u8>;
+use bitmap::Bitmap;
 
 pub struct Sprite {
     width: usize,

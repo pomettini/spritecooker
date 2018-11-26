@@ -9,10 +9,9 @@ pub mod bmpto2bpp;
 pub mod bmptovga;
 
 use stb_image::image::LoadResult;
+use bitmap::Bitmap;
 
 use std::path::PathBuf;
-
-type Bitmap = Vec<u8>;
 
 pub struct PreviewImage {
     width: usize,

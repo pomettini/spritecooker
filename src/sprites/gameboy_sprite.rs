@@ -1,6 +1,5 @@
 use sprites::Sprite;
-
-type Bitmap = Vec<u8>;
+use bitmap::Bitmap;
 
 pub struct GameboySprite {
     sprite: Sprite,
