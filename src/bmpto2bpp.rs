@@ -2,7 +2,7 @@ extern crate exoquant;
 extern crate stb_image;
 
 use exoquant::*;
-use bitmap::Bitmap;
+use bitmap::*;
 
 pub fn get_gb_colors() -> [Color; 4] {
     let mut gb_colors: [Color; 4] = [Color::new(0, 0, 0, 0); 4];
@@ -16,7 +16,7 @@ pub fn get_gb_colors() -> [Color; 4] {
     gb_colors
 }
 
-pub fn bmp_to_2bpp(image: &[u8], image_width: usize) -> Bitmap {
+pub fn bmp_to_2bpp(image: BitmapRef, image_width: usize) -> Bitmap {
     let gb_colors = get_gb_colors();
     let mut exocolors: Vec<Color> = Vec::new();
 
@@ -42,7 +42,7 @@ pub fn bmp_to_2bpp(image: &[u8], image_width: usize) -> Bitmap {
     gb_remapper.remap(&exocolors, image_width)
 }
 
-pub fn twopp_to_bmp(image: &[u8]) -> Bitmap {
+pub fn twopp_to_bmp(image: BitmapRef) -> Bitmap {
     let gb_colors = get_gb_colors();
     let mut colors: Bitmap = Vec::new();
 

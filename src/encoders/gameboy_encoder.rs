@@ -1,7 +1,7 @@
-use bitmap::Bitmap;
+use bitmap::*;
 use sprites::Sprite;
 
-pub fn tile_to_hex(tile_pixels: &[u8]) -> Bitmap {
+pub fn tile_to_hex(tile_pixels: BitmapRef) -> Bitmap {
     // Tile size must be 64 bytes
     assert_eq!(tile_pixels.len(), 64);
 

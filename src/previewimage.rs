@@ -9,7 +9,7 @@ pub mod bmpto2bpp;
 pub mod bmptovga;
 
 use stb_image::image::LoadResult;
-use bitmap::Bitmap;
+use bitmap::*;
 
 use std::path::PathBuf;
 
@@ -21,7 +21,7 @@ pub struct PreviewImage {
 }
 
 impl PreviewImage {
-    pub fn new(root: &PathBuf, image: &[u8], width: usize, height: usize) -> PreviewImage {
+    pub fn new(root: &PathBuf, image: BitmapRef, width: usize, height: usize) -> PreviewImage {
         // Convert the image from VGA color palette to BMP
         // TODO: Must accept every type of converter
         PreviewImage {

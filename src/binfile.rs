@@ -3,7 +3,7 @@ extern crate glob;
 extern crate image;
 extern crate stb_image;
 
-use bitmap::Bitmap;
+use bitmap::{Bitmap,BitmapRef};
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::PathBuf;
@@ -15,7 +15,7 @@ pub struct BinFile {
 }
 
 impl BinFile {
-    pub fn new(root: &PathBuf, image: &[u8]) -> BinFile {
+    pub fn new(root: &PathBuf, image: BitmapRef) -> BinFile {
         BinFile {
             root: root.to_path_buf(),
             image: image.to_vec(),
@@ -28,7 +28,7 @@ impl BinFile {
         output
     }
 
-    fn write_bin_file(&self, path: &PathBuf, image: &[u8]) {
+    fn write_bin_file(&self, path: &PathBuf, image: BitmapRef) {
         let mut file = File::create(&path).unwrap();
         file.write_all(&image).unwrap();
     }
