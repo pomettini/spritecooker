@@ -3,7 +3,7 @@ extern crate glob;
 extern crate image;
 extern crate stb_image;
 
-use bitmap::{Bitmap,BitmapRef};
+use bitmap::{Bitmap, BitmapRef};
 use std::fs::File;
 use std::io::prelude::*;
 use std::path::PathBuf;

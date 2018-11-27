@@ -1,6 +1,3 @@
-pub mod gameboy_sprite;
-pub mod impostor_sprite;
-pub mod pico8_sprite;
 use bitmap::Bitmap;
 
 pub struct Sprite {

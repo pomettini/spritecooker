@@ -1,8 +1,8 @@
 extern crate exoquant;
 extern crate stb_image;
 
-use exoquant::*;
 use bitmap::*;
+use exoquant::*;
 
 pub fn get_gb_colors() -> [Color; 4] {
     let mut gb_colors: [Color; 4] = [Color::new(0, 0, 0, 0); 4];

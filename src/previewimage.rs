@@ -8,8 +8,8 @@ pub mod bmpto2bpp;
 #[path = "bmptovga.rs"]
 pub mod bmptovga;
 
-use stb_image::image::LoadResult;
 use bitmap::*;
+use stb_image::image::LoadResult;
 
 use std::path::PathBuf;
 

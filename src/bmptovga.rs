@@ -4,8 +4,8 @@ extern crate stb_image;
 #[path = "vgapalette.rs"]
 pub mod vgapalette;
 
-use exoquant::*;
 use bitmap::*;
+use exoquant::*;
 
 pub fn bmp_to_vga(image: BitmapRef, image_width: usize) -> Bitmap {
     let vga_colors = vgapalette::get_vga_colors();

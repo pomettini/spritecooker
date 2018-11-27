@@ -1,5 +1,4 @@
 use bitmap::*;
-use sprites::Sprite;
 
 pub fn tile_to_hex(tile_pixels: BitmapRef) -> Bitmap {
     // Tile size must be 64 bytes
